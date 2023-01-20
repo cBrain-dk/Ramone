@@ -1,0 +1,22 @@
+----- Get cBrain fork -----
+git clone https://github.com/cBrain-dk/Ramone
+git fetch origin
+
+----- Link to Jørn fork -----
+git remote add upstream https://github.com/JornWildt/Ramone
+git fetch upstream
+
+----- Create feature branch from Jørn master -----
+git checkout -b <feature-branch> upstream/master
+
+----- Merge feature -----
+When your feature has been finished merge <feature-branch> to cBrain master. Concurrently create a pull-request to Jørn master. It is important that this is done from the feature branch, before any internal changes has been made.
+
+----- Create package -----
+Update version numbers in cBrain master.
+Build project in release mode.
+Create nuget package of the project. This can be done in visual studio via the "pack" context-menu option on the relevant .csproj
+
+----- Publish package -----
+The pack command creates a .nupkg in build/release
+nuget add <PathTo>.nupkg -Source <PathToNugetRegistry>
